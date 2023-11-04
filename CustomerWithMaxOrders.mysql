@@ -1,0 +1,9 @@
+# Write your MySQL query statement below
+
+WITH cte AS(select customer_number,count(order_number) as orderCount
+FROM Orders
+group by customer_number
+Order by orderCount DESC
+limit 1)
+select customer_number
+FROM cte where orderCount=(select max(orderCount));
